@@ -151,3 +151,30 @@ Start from Question 3
 ===========================================================================================================================================================
 
 
+
+`1. Show city name, country, air_quality only for cities present in both tables`
+SELECT weather.city, weather.country, city.air_quality FROM weather JOIN city ON weather.city = city.name;
+
+`2. Show cities where rain > 50 and air_quality > 200`
+SELECT weather.city FROM weather JOIN city ON weather.city = city.name WHERE weather.rain>50 AND city.air_quality>200;
+
+`3. Show cities with an airport and temp_high > 30`
+SELECT city.name FROM city JOIN weather ON city.name = weather.city WHERE city.airport = TRUE AND weather.temp_high > 30;
+
+`4. Show all cities from weather, with air_quality if available`
+SELECT weather.city, city.air_quality FROM weather LEFT JOIN city ON weather.city = city.name;
+
+`5. Identify cities that do NOT exist in the city table`
+SELECT weather.city FROM weather LEFT JOIN city ON weather.city = city.name WHERE city.name IS NULL;
+
+`6. Show cities where weather exists but airport info is missing`
+SELECT weather.city FROM weather LEFT JOIN city ON weather.city = city.name WHERE city.airport IS NULL;
+
+`7. Show cities with rain > 50, including those without air_quality data`
+SELECT weather.city FROM weather LEFT JOIN city ON weather.city = city.name WHERE weather.rain>50;
+
+`8. Show all cities from city, with weather data if available`
+SELECT * FROM weather RIGHT JOIN city ON weather.city = city.name; 
+
+`9. Show all cities from both tables`
+SELECT weather.city FROM weather OUTER JOIN city ON city.name = weather.city;
