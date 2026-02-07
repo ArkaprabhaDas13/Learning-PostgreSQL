@@ -135,7 +135,9 @@ Start from Question 3
  las vegas | america |       20 |        32 |   50
  tsukuba   | japan   |       10 |        20 |   50
  kolkata   | india   |       20 |        40 |   90
- (7 rows)
+ new york  | america |      -10 |        10 |    4
+(8 rows)
+
 
 # CREATE TABLE city(name varchar(50), air_quality int, districts int, airport boolean);
 # SELECT * FROM city;
@@ -178,3 +180,6 @@ SELECT * FROM weather RIGHT JOIN city ON weather.city = city.name;
 
 `9. Show all cities from both tables`
 SELECT weather.city FROM weather OUTER JOIN city ON city.name = weather.city;
+
+`10. Correctly show all cities with rain > 50, keeping cities without air_quality`
+SELECT weather.city, city.air_quality FROM weather LEFT JOIN city ON weather.city = city.name WHERE weather.rain > 50;
